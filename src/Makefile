@@ -38,7 +38,12 @@ dist:
 
 install:
 	mkdir build
-	cd SmartCalcQT && qmake && make && make clean && rm Makefile && cd ../ && mv SmartCalcQT/Smart_Calculator.app build
+	cd SmartCalcQT && qmake && make && make clean && rm Makefile && cd ../
+ifeq ($(OS), Darwin)
+	mv SmartCalcQT/Smart_Calculator.app build
+else
+	mv SmartCalcQT/Smart_Calculator build
+endif
 
 uninstall:
 	rm -rf build*
@@ -75,5 +80,6 @@ clean:
 	rm -rf Archive_SmartCalc_v1.0/
 	rm -rf *.tgz
 	rm -rf build
+	rm -rf SmartCalcQT/.qmake.stash
 
 rebuild: clean all
