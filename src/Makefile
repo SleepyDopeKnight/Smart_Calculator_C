@@ -1,4 +1,4 @@
-.PHONY: all tests rebuild open gcov_report install uninstall dist clean check
+.PHONY: all rebuild install uninstall dist clean check
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -std=c11
 LINUX=-lsubunit -lrt -lpthread -lm
@@ -32,13 +32,16 @@ dist:
 	rm -rf Archive_SmartCalc_v1.0/
 	mkdir Archive_SmartCalc_v1.0/
 	mkdir Archive_SmartCalc_v1.0/src/
+ifeq ($(OS), Darwin)
 	cp -r ./build/Smart_Calculator.app Archive_SmartCalc_v1.0/src/
+else
+	cp -r ./build/Smart_Calculator Archive_SmartCalc_v1.0/src/
+endif
 	tar cvzf Archive_SmartCalc_v1.0.tgz Archive_SmartCalc_v1.0/
 	rm -rf Archive_SmartCalc_v1.0/
 
 install:
-	mkdir build
-	cd SmartCalcQT && qmake && make && make clean && rm Makefile && cd ../
+	cd SmartCalcQT && qmake && make && make clean && rm Makefile && cd ../ && mkdir build
 ifeq ($(OS), Darwin)
 	mv SmartCalcQT/Smart_Calculator.app build
 else
