@@ -213,7 +213,7 @@ void MainWindow::on_pushButton_eq_clicked() {
   double x = 0;
   char str[10000] = {0};
   QByteArray ba = ui->result->text().toLatin1();
-  strlcpy(str, ba, ui->result->text().length() + 1);
+  strncpy(str, ba, ui->result->text().length() + 1);
   if (ui->value_x->text() != "") x = (ui->value_x->text().toDouble());
   if (valid_str(str) == 1) {
     ui->result->setText("Invalid input");
