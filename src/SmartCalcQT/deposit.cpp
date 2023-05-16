@@ -22,7 +22,7 @@ void Deposit::on_pushButton_res_clicked() {
   deposit depositqt = {};
   char str[10000] = {};
   QByteArray ba = ui->transactions->toPlainText().toLatin1();
-  strlcpy(str, ba, ui->transactions->toPlainText().length() + 1);
+  stnlcpy(str, ba, ui->transactions->toPlainText().length() + 1);
   transactions(&depositqt, str);
   depositqt.sum_deposit = ui->ui_sum_deposit->text().toDouble();
   depositqt.time_deposit = ui->ui_time_deposit->text().toInt();
